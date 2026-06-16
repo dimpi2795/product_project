@@ -1,0 +1,7 @@
+$kind: collection
+name: New Folder
+auth:
+  - id: f21b56fa-cfa6-4a51-8f58-05602c538682
+    type: apikey
+    name: API Key
+order: 1703008759971839

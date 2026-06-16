@@ -39,7 +39,7 @@ export default function Signup() {
         <h2 className="text-2xl font-bold mb-6 text-center">Create Account</h2>
 
        {msg && (
-        <div className="bg-red-100 text-red-700 p-3 rounded mb-4 text-center">
+        <div className="bg-red-100 text-red-700 p-3 rounded mb-4 text-center ">
           {msg}
         </div>
        )}
@@ -71,13 +71,13 @@ export default function Signup() {
           placeholder="Enter Password"
           value={form.password}
           onChange={handleChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focuse:outline-none focuse:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-black-300 rounded-md hover:black-white-blue focuse:outline-none focuse:ring-2 focus:ring-blue-500"
           required
             />
 
             <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full bg-blue-500 hover:drop-shadow-sky-950 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               Sign Up
             </button>

@@ -10,16 +10,39 @@ export default function ProductList() {
         const response = await api.get("/products");
         setProducts(response.data);
     };
+const addToCart = async (productId) => {
+  try {
+    const userId = localStorage.getItem("userId");
 
-    const deleteProduct = async (id) => {
-        try{
-            await api.delete(`/products/delete/${id}`);
-            alert("Product deleted successfully");
-            loadProducts();
-        } catch (error) {
-            console.error("Error deleting product:", error);
-        }
-    };
+    await api.post("/cart/add", {
+      userId,
+      productId,
+    });
+
+    // 🔔 NOTIFICATION TRIGGER
+    window.dispatchEvent(new Event("cartUpdated"));
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+   const deleteProduct = async (id) => {
+
+  try {
+
+    const res = await api.delete(`/products/${id}`);
+
+    alert(res.data.message);
+
+    loadProducts();
+
+  } catch (error) {
+
+    console.log(error);
+
+  }
+
+};
 
     useEffect(() => {
         loadProducts();

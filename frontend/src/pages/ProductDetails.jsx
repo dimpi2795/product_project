@@ -22,14 +22,42 @@ export default function ProductDetails() {
      }   
     return ( 
       <div className="p-6 max-w-3xl mx-auto">
-        <img src={product.image} alt={product.name} className="w-full h-40 object-contain bg-white rounded" />
+        <img src={product.image} alt={product.title} className="w-full h-40 object-contain bg-white rounded" />
         <h1 className="text-2xl font-bold mt-4">{product.title}</h1>
         <p className="text-gray-700 mt-2">{product.description}</p>
         <p className="text-xl font-semibold mt-4">${product.price}</p>
 
-        <button className="mt-6 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 bg-blue-600 transition">
-          Add to Cart
-          </button>
+       <button
+  onClick={async () => {
+
+    try {
+
+      const userId = localStorage.getItem("userId");
+
+      if (!userId) {
+        alert("Please login first");
+        return;
+      }
+
+      await api.post("/cart/add", {
+        userId,
+        productId: product._id
+      });
+
+      alert("Added to cart");
+
+      window.dispatchEvent(new Event("cartUpdated"));
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+
+  }}
+>
+  Add to Cart
+</button>
       </div>
     )
     }
